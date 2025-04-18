@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Batch Lead Status Update - Real Estate CRM</title>
+  <link rel="stylesheet" href="/assets/css/lead/status.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Batch Update Lead Status</h1>
+
+    <div class="form-group">
+      <label for="statusSelect">Change Status To:</label>
+      <select id="statusSelect">
+        <option value="">-- Choose Status --</option>
+        <option value="NEW">New</option>
+        <option value="CONTACTED">Contacted</option>
+        <option value="CLOSED">Closed</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Select Leads:</label>
+      <div id="leadCheckboxes" class="checkbox-group"></div>
+    </div>
+
+    <button onclick="updateBatchStatus()">Update Selected Leads</button>
+  </div>
+
+  <!-- Toast Message -->
+  <div id="toast" class="toast"></div>
+
+  <script src="/assets/js/lead/status.js">
+   
+  </script>
+</body>
+</html>

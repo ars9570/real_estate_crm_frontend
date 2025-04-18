@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CRM User Page</title>
+  <link rel="stylesheet" href="/assets/css/users.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome, <span id="userName">[User Name]</span></h1>
+    
+    <div class="card">
+      <h2>User Details</h2>
+      <p><strong>Email:</strong> <span id="userEmail">user@example.com</span></p>
+      <p><strong>Role:</strong> <span id="userRole">Agent</span></p>
+      <button onclick="editProfile()">Edit Profile</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <div class="card">
+      <h2>Lead Actions</h2>
+      <ul>
+        <li><a href="/leads/add.html">Add New Lead</a></li>
+        <li><a href="/leads/view.html">View All Leads</a></li>
+        <li><a href="/leads/status.html">Change Lead Status</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="/assets/js/users.js"></script>
+</body>
+</html>

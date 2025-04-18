@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Leads - Real Estate CRM</title>
+  <link rel="stylesheet" href="/assets/css/lead/view.css">
+</head>
+<body>
+  <div class="container">
+    <h1>All Leads</h1>
+
+    <div class="controls">
+      <label for="statusFilter">Filter by Status:</label>
+      <select id="statusFilter" onchange="renderFilteredLeads()">
+        <option value="ALL">All</option>
+        <option value="NEW">New</option>
+        <option value="CONTACTED">Contacted</option>
+        <option value="CLOSED">Closed</option>
+      </select>
+
+      <button onclick="exportCSV()">Export to CSV</button>
+    </div>
+
+    <div id="leads"></div>
+
+    <div class="pagination">
+      <button onclick="prevPage()">Previous</button>
+      <span id="pageInfo">Page 1</span>
+      <button onclick="nextPage()">Next</button>
+    </div>
+  </div>
+
+  <script src="/assets/js/lead/view.js">
+   
+  </script>
+</body>
+</html>

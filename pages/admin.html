@@ -1,37 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="/assets/css/admin.css" />
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - Real Estate CRM</title>
+  <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
 <body>
-
   <div class="navbar">
-    <div class="navbar-left">Admin Dashboard</div>
-    <div class="navbar-right">
-      <a href="#">Home</a>
-      <a href="#">Logout</a>
-    </div>
+    <h1>Admin Dashboard</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
 
   <div class="container">
     <div class="sidebar">
-        <h3>Manage</h3>
-        <button onclick="window.location.href='adduser.html'">➕ Add User</button>
-        <button onclick="showDetails('users')">Manage Users</button>
-        <button onclick="showDetails('properties')">Manage Properties</button>
-      </div>
+      <h2>Admin Panel</h2>
+      <button onclick="showSection('addUser')">Add User</button>
+      <button onclick="showSection('viewUsers')">View Users</button>
       
 
-    <div class="details-section" id="details">
-      <h2>Welcome, Admin!</h2>
-      <p>Select an option on the left to manage users or properties.</p>
+      <h2>Lead Management</h2>
+      <button onclick="showSection('addLead')">Add Lead</button>
+      <button onclick="showSection('viewLeads')">View Leads</button>
+      <button onclick="showSection('deleteLead')">Delete Lead</button>
+      <button onclick="showSection('assignLead')">Assign Lead</button>
+
+      <h2>Follow Ups</h2>
+      <button onclick="showSection('addFollowUp')">Add Follow Up</button>
+      <button onclick="showSection('viewFollowUps')">View Follow Ups</button>
+      <button onclick="showSection('deleteFollowUp')">Delete Follow Up</button>
+      <button onclick="showSection('assignFollowUp')">Assign Follow Up</button>
+    </div>
+
+    <div class="main-content">
+      <div id="content-area">
+        <p>Welcome to the Admin Dashboard. Select an option from the sidebar to proceed.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update User Modal -->
+  <div id="updateUserModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="closeUpdateModal()">&times;</span>
+      <h2>Update User</h2>
+      <form id="updateUserForm" onsubmit="updateUser(event)">
+        <input type="hidden" name="id" id="updateUserId">
+        <label>Name:</label>
+        <input type="text" name="name" id="updateUserName" required>
+        <label>Email:</label>
+        <input type="email" name="email" id="updateUserEmail" required>
+        <label>Phone:</label>
+        <input type="text" name="phone" id="updateUserPhone" required>
+        <label>Password:</label>
+        <input type="password" name="password" id="updateUserPassword" required>
+        <button type="submit">Update</button>
+      </form>
     </div>
   </div>
 
   <script src="/assets/js/admin.js"></script>
-
 </body>
 </html>
