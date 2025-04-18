@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/assets/css/admin.css" />
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="navbar-left">Admin Dashboard</div>
+    <div class="navbar-right">
+      <a href="#">Home</a>
+      <a href="#">Logout</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+        <h3>Manage</h3>
+        <button onclick="window.location.href='adduser.html'">➕ Add User</button>
+        <button onclick="showDetails('users')">Manage Users</button>
+        <button onclick="showDetails('properties')">Manage Properties</button>
+      </div>
+      
+
+    <div class="details-section" id="details">
+      <h2>Welcome, Admin!</h2>
+      <p>Select an option on the left to manage users or properties.</p>
+    </div>
+  </div>
+
+  <script src="/assets/js/admin.js"></script>
+
+</body>
+</html>
