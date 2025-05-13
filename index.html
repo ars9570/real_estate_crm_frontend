@@ -19,8 +19,21 @@
       <input type="text" id="username" placeholder="Email" required />
       <input type="password" id="password" placeholder="Password" required />
       <button type="submit">Login</button>
+      <div class="forgot-password">
+        <a href="/pages/forgot-password.html">Forgot Password?</a>
+      </div>
     </form>
   </main>
+
+   <!-- Custom customAlert Box -->
+   <div id="custom-customAlert" class="custom-customAlert hidden" style="display: none;">
+      <div class="custom-customAlert-box">
+        <p id="custom-customAlert-message"></p>
+        <button onclick="closeCustomcustomAlert()">OK</button>
+      </div>
+    </div>
+
+    
 
   <script src="/assets/js/main.js"></script>
 </body>

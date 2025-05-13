@@ -2,62 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Dashboard - Real Estate CRM</title>
-  <link rel="stylesheet" href="/assets/css/admin.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chandra Realtors CRM</title>
+  <link rel="stylesheet" href="/assets/css/comman/comman.css">
+  <link rel="stylesheet" href="/assets/css/admin/admin.css">
 </head>
 <body>
-  <div class="navbar">
-    <h1>Admin Dashboard</h1>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </div>
-
   <div class="container">
-    <div class="sidebar">
-      <h2>Admin Panel</h2>
-      <button onclick="showSection('addUser')">Add User</button>
-      <button onclick="showSection('viewUsers')">View Users</button>
-      
+    <aside class="sidebar">
+        <h2 class="logo">Chandra Realtors <span>CRM</span></h2>
+        <ul class="nav-links">
+          <button onclick="showSection('ViewDashboard', this)" class="active"><i class="icon">📊</i> Dashboard</button>
+          <button onclick="showSection('ViewUsers', this)"><i class="icon">👤</i> Users</button>
+          <button onclick="showSection('ViewLead', this)"><i class="icon">📋</i> Leads</button>
+          <button onclick="showSection('ViewProperty', this)"><i class="icon">🏢</i> Property</button>
+          <button onclick="showSection('ViewNotes', this)"><i class="icon">🗒️</i> To Do Notes</button>
+          <button id="notificationButton" onclick="showSection('ViewNotification', this)">
+            <i class="icon">🔔</i> Notifications
+            <span id="notificationCount" class="notification-count" >0</span>
+          </button>
+          <button onclick="showSection('ViewAccount', this)"><i class="icon">👤</i> Account</button>
+          <button onclick="showSection('logout', this)"><i class="icon">🚪</i> Log Out</button>
+        </ul>
+    </aside>
 
-      <h2>Lead Management</h2>
-      <button onclick="showSection('addLead')">Add Lead</button>
-      <button onclick="showSection('viewLeads')">View Leads</button>
-      <button onclick="showSection('deleteLead')">Delete Lead</button>
-      <button onclick="showSection('assignLead')">Assign Lead</button>
+    <main class="main-content">
+      <header class="header-section">
+        <div class="welcome-message">
+          <h1>Welcome <span id="userNameHeader">User</span></h1>
+          <p>Let's take a detailed look at our workplace...</p>
+        </div>
+        <div class="search-container">
+          <input type="text" placeholder="Search here">
+          <span class="search-icon">🔍</span>
+        </div>
+        <i class="icon">🔔</i>
+        <div class="dropdown">
+          <button class="New">➕ Add</button>
+          <div class="dropdown-content">
+            <a href="#" onclick="showSection('User')">User</a>
+            <a href="#" onclick="showSection('Lead')">Lead</a>
+            <a href="#" onclick="showSection('Properties')">Properties</a>
+            <a href="#" onclick="showSection('Notes')">To Do Notes</a>
+          </div>
+        </div>
+        <div class="profile-section">
+          <div class="profile-info">
+            <span class="name" id="userName">Chandra Vikas</span>
+            <span class="role" id="userRole">User</span>
+          </div>
+          <img id="avatarPreview" src="assets/default-avatar.png" alt="Avatar Preview">          
+        </div>
+      </header>
 
-      <h2>Follow Ups</h2>
-      <button onclick="showSection('addFollowUp')">Add Follow Up</button>
-      <button onclick="showSection('viewFollowUps')">View Follow Ups</button>
-      <button onclick="showSection('deleteFollowUp')">Delete Follow Up</button>
-      <button onclick="showSection('assignFollowUp')">Assign Follow Up</button>
-    </div>
-
-    <div class="main-content">
-      <div id="content-area">
-        <p>Welcome to the Admin Dashboard. Select an option from the sidebar to proceed.</p>
+      <div id="dashboard-stats">
+        <!-- Content from JavaScript will be injected here -->
       </div>
-    </div>
-  </div>
 
-  <!-- Update User Modal -->
-  <div id="updateUserModal" class="modal hidden">
-    <div class="modal-content">
-      <span class="close" onclick="closeUpdateModal()">&times;</span>
-      <h2>Update User</h2>
-      <form id="updateUserForm" onsubmit="updateUser(event)">
-        <input type="hidden" name="id" id="updateUserId">
-        <label>Name:</label>
-        <input type="text" name="name" id="updateUserName" required>
-        <label>Email:</label>
-        <input type="email" name="email" id="updateUserEmail" required>
-        <label>Phone:</label>
-        <input type="text" name="phone" id="updateUserPhone" required>
-        <label>Password:</label>
-        <input type="password" name="password" id="updateUserPassword" required>
-        <button type="submit">Update</button>
-      </form>
-    </div>
-  </div>
+       <!-- Custom customAlert Box -->
+        <div id="custom-customAlert" class="custom-customAlert hidden">
+          <div class="custom-customAlert-box">
+            <p id="custom-customAlert-message"></p>
+            <button onclick="closeCustomcustomAlert()">OK</button>
+          </div>
+          <div id="customOptionPopup" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -30%); background:white; padding:20px; border-radius:10px; box-shadow:0px 0px 10px rgba(0,0,0,0.3); z-index:1001;">
+            <h3 id="optionPopupUserName"></h3>
+            <button onclick="selectOption('lead')">Show Leads</button>
+            <button onclick="selectOption('property')">Show Properties</button>
+            <button onclick="closeOptionPopup()" style="margin-top:10px; background:red; color:white;">Cancel</button>
+          </div>
+          
+          <div id="optionPopupOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;"></div>
 
-  <script src="/assets/js/admin.js"></script>
+
+          <div id="leadSummaryModal" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:#fff; padding:20px; border:1px solid #ccc; z-index:1000;">
+            <h3>Lead Summary</h3>
+            <div id="leadSummaryContent"></div>
+            <button onclick="closeLeadSummary()">Close</button>
+          </div>
+          
+          
+    </main>
+  </div>
+  <script>
+    function customAlert(message) {
+      const alertBox = document.getElementById("custom-customAlert");
+      const alertMessage = document.getElementById("custom-customAlert-message");
+
+      alertMessage.textContent = message;
+      alertBox.classList.remove("hidden");
+    }
+
+    function closeCustomcustomAlert() {
+      document.getElementById("custom-customAlert").classList.add("hidden");
+    }
+
+    // 🟢 Set user info dynamically from localStorage
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      document.getElementById("userName").textContent = user.name || user.email?.split('@')[0] || "User";
+      document.getElementById("userNameHeader").textContent = user.name || user.email?.split('@')[0] || "User";
+      document.getElementById("userRole").textContent = user.role || "User";
+    }
+  </script>
+    
+
+  <script src="/assets/js/comman/dashboard.js"></script>
+  <script src="/assets/js/admin/admin.js"></script>
+  <script src="/assets/js/admin/note.js"></script>
+  <script src="/assets/js/admin/users.js"></script>
+  <script src="/assets/js/comman/account.js"></script>
+  <script src="/assets/js/admin/property.js"></script>
+  <script src="/assets/js/user/notification.js"></script>
+  <script src="/assets/js/admin/lead.js"></script>
+
 </body>
 </html>

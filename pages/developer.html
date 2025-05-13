@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chandra Realtors CRM</title>
+  <link rel="stylesheet" href="/assets/css/comman/comman.css">
+  <link rel="stylesheet" href="/assets/css/comman/custemAlert.css">
+  <style>
+ 
+
+  </style>
+  <!-- <link rel="stylesheet" href="/assets/css/developer/developer.css"> -->
+
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+        <h2 class="logo">Chandra Realtors <span>CRM</span></h2>
+        <ul class="nav-links">
+            <button onclick="showSection('ViewDashboard')" class="active">
+                <i class="icon">📊</i> Dashboard
+              </button>
+              <button onclick="showSection('AddAdmin')">
+                <i class="icon">➕</i> Add Admin / Users
+              </button>
+              <button onclick="showSection('ViewAdmins')">
+                <i class="icon">👁️</i> View Admin
+              </button>
+              <button onclick="showSection('ViewUsers')">
+                <i class="icon">👁️</i> ViewUsers
+              </button>
+              <button onclick="showSection('ViewAccount')">
+                <i class="icon">👤</i> Account
+              </button>
+              <button onclick="showSection('logout')">
+                <i class="icon">🚪</i> Log Out
+              </button>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+      <header class="header-section">
+        <div class="welcome-message">
+          <h1>Welcome <span>Chandra Vikas</span></h1>
+          <p>Let's take a detailed look at our workplace...</p>
+        </div>
+        <div class="search-container">
+          <input type="text" placeholder="Search here">
+          <span class="search-icon">🔍</span>
+        </div>
+        <i class="icon">🔔</i>
+        
+        <div class="profile-section" onclick="document.getElementById('avatarInput').click();">
+          <div class="profile-info">
+            <span class="name" id="userName">Chandra Vikas</span>
+            <span class="role" id="userRole">User</span>
+          </div>
+          <input type="file" id="avatarInput" style="display: none;">
+          <input type="text" id="avatarNameInput" placeholder="Enter avatar name (optional)" style="display: none;">
+          <img id="avatarPreview" src="assets/default-avatar.png" alt="Avatar Preview">          
+        </div>
+      </header>
+
+      <div id="dashboard-stats">
+        <!-- Content from JavaScript will be injected here -->
+      </div>
+    </main>
+  </div>
+
+ <!-- Custom custemAlert Box  -->
+  <div id="custom-custemAlert" class="custom-custemAlert hidden">
+    <div class="custom-custemAlert-box">
+      <p id="custom-custemAlert-message"></p>
+      <button onclick="closeCustomcustemAlert()">OK</button>
+    </div>
+  </div> 
+
+  <script>
+      function custemAlert(message) {
+      const custemAlertBox = document.getElementById("custom-custemAlert");
+      const custemAlertMessage = document.getElementById("custom-custemAlert-message");
+
+      custemAlertMessage.textContent = message;
+      custemAlertBox.classList.remove("hidden");
+    }
+
+    function closeCustomcustemAlert() {
+      document.getElementById("custom-custemAlert").classList.add("hidden");
+    }
+  </script>
+
+  <script src="/assets/js/developer/developer.js"></script>
+  <script src="/assets/js/developer/add.js"></script>
+  <!-- <script src="/assets/js/comman/account.js"></script> -->
+  <script src="/assets/js/comman/dashboard.js"></script>
+  <!-- <script src="/assets/js/comman/image.js"></script> -->
+</body>
+</html>

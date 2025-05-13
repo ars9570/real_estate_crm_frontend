@@ -1,32 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CRM User Page</title>
-  <link rel="stylesheet" href="/assets/css/users.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chandra Realtors CRM</title>
+  <link rel="stylesheet" href="/assets/css/comman/comman.css" />
+  <link rel="stylesheet" href="/assets/css/admin/admin.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Welcome, <span id="userName">[User Name]</span></h1>
-    
-    <div class="card">
-      <h2>User Details</h2>
-      <p><strong>Email:</strong> <span id="userEmail">user@example.com</span></p>
-      <p><strong>Role:</strong> <span id="userRole">Agent</span></p>
-      <button onclick="editProfile()">Edit Profile</button>
-      <button onclick="logout()">Logout</button>
-    </div>
-
-    <div class="card">
-      <h2>Lead Actions</h2>
-      <ul>
-        <li><a href="/leads/add.html">Add New Lead</a></li>
-        <li><a href="/leads/view.html">View All Leads</a></li>
-        <li><a href="/leads/status.html">Change Lead Status</a></li>
+    <aside class="sidebar">
+      <h2 class="logo">Chandra Realtors <span>CRM</span></h2>
+      <ul class="nav-links">
+        <button onclick="showSection('ViewDashboard', this)" class="active"><i class="icon">📊</i> Dashboard</button>
+        <button onclick="showSection('ViewLead', this)"><i class="icon">📋</i> Leads</button>
+        <button onclick="showSection('ViewProperty', this)"><i class="icon">🏢</i> Property</button>
+        <button onclick="showSection('ViewNotes', this)"><i class="icon">🗒️</i> To Do Notes</button>
+        <button id="notificationButton" onclick="showSection('ViewNotification', this)">
+          <i class="icon">🔔</i> Notifications
+          <span id="notificationCount" class="notification-count">0</span>
+        </button>
+        <button onclick="showSection('ViewAccount', this)"><i class="icon">👤</i> Account</button>
+        <button onclick="showSection('logout', this)"><i class="icon">🚪</i> Log Out</button>
       </ul>
-    </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header-section">
+        <div class="welcome-message">
+          <h1>Welcome <span id="userNameHeader">User</span></h1>
+          <p>Let's take a detailed look at our workplace...</p>
+        </div>
+        <div class="search-container">
+          <input type="text" placeholder="Search here" />
+          <span class="search-icon">🔍</span>
+        </div>
+        <div class="dropdown">
+          <button class="New">➕ Add</button>
+          <div class="dropdown-content">
+            <a href="#" onclick="showSection('Lead')">Lead</a>
+            <a href="#" onclick="showSection('Properties')">Properties</a>
+            <a href="#" onclick="showSection('Notes')">To Do Notes</a>
+          </div>
+        </div>
+        <div class="profile-section" onclick="document.getElementById('avatarInput').click();">
+          <div class="profile-info">
+            <span class="name" id="userName">User</span>
+            <span class="role" id="userRole">User</span>
+          </div>
+          <input type="file" id="avatarInput" style="display: none;" />
+          <input type="text" id="avatarNameInput" placeholder="Enter avatar name (optional)" style="display: none;" />
+          <img id="avatarPreview" src="assets/default-avatar.png" alt="Avatar Preview" />
+        </div>
+      </header>
+
+      <div id="dashboard-stats">
+        <!-- Dashboard content will be loaded here -->
+      </div>
+
+      <!-- Custom customAlert Box -->
+      <div id="custom-customAlert" class="custom-customAlert hidden">
+        <div class="custom-customAlert-box">
+          <p id="custom-customAlert-message"></p>
+          <button onclick="closeCustomcustomAlert()">OK</button>
+        </div>
+      </div>
+    </main>
   </div>
 
-  <script src="/assets/js/users.js"></script>
+ 
+
+  <!-- All Required JS -->
+  <!-- <script src="/assets/js/comman/dashboard.js"></script> -->
+  <script src="/assets/js/user/users.js"></script>
+  <script src="/assets/js/user/notes.js"></script>
+  <script src="/assets/js/user/leads.js"></script>
+  <!-- <script src="/assets/js/comman/account.js"></script> -->
+  <script src="/assets/js/user/notification.js"></script>
+  <script src="/assets/js/user/property.js"></script>
+   <!-- <script src="/assets/js/comman/dashboard.js"></script> -->
+
+
+  <script>
+    function customAlert(message) {
+      const alertBox = document.getElementById("custom-customAlert");
+      const alertMessage = document.getElementById("custom-customAlert-message");
+
+      alertMessage.textContent = message;
+      alertBox.classList.remove("hidden");
+    }
+
+    function closeCustomcustomAlert() {
+      document.getElementById("custom-customAlert").classList.add("hidden");
+    }
+
+    // 🟢 Set user info dynamically from localStorage
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      document.getElementById("userName").textContent = user.name || user.email?.split('@')[0] || "User";
+      document.getElementById("userNameHeader").textContent = user.name || user.email?.split('@')[0] || "User";
+      document.getElementById("userRole").textContent = user.role || "User";
+    }
+  </script>
 </body>
 </html>

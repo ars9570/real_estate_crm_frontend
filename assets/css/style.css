@@ -12,6 +12,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: "/";
   }
   
   header h1 {
@@ -77,9 +78,59 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+
   }
   
   button:hover {
     background-color: #0891b2;
   }
+
+  .custom-custemAlert-message .btn{
+  display: none;
+}
   
+
+  /* Responsive adjustments
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+
+  main {
+    max-width: 90%;
+    padding: 0 1rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.95rem;
+    padding: 0.65rem 0.9rem;
+  }
+
+  .home-img {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.85rem;
+  }
+} */
